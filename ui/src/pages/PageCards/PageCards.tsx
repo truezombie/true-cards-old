@@ -104,7 +104,6 @@ const PageCards = ({ classes }: PageCardsProps): JSX.Element => {
 
   const {
     called: calledCardSetWithCards,
-    refetch: refetchCardSetWithCards,
     loading: isLoading,
     error: cardSetsFetchingError,
     data = {
@@ -132,21 +131,45 @@ const PageCards = ({ classes }: PageCardsProps): JSX.Element => {
   const [onCreateCard, { error: createCardError }] = useMutation(
     CREATE_CARD_QUERY,
     {
-      onCompleted: () => refetchCardSetWithCards(),
+      refetchQueries: [
+        {
+          query: GET_CARDS_QUERY,
+          variables: {
+            cardSetId: urlParams.id,
+            ...searchParams,
+          },
+        },
+      ],
     }
   );
 
   const [onUpdateCard] = useMutation(UPDATE_CARD_QUERY, {
-    onCompleted: () => refetchCardSetWithCards(),
+    refetchQueries: [
+      {
+        query: GET_CARDS_QUERY,
+        variables: {
+          cardSetId: urlParams.id,
+          ...searchParams,
+        },
+      },
+    ],
   });
 
   const [onDeleteCard] = useMutation(DELETE_CARD_QUERY, {
+    refetchQueries: [
+      {
+        query: GET_CARDS_QUERY,
+        variables: {
+          cardSetId: urlParams.id,
+          ...searchParams,
+        },
+      },
+    ],
     onCompleted: () => {
       setSearchParams({
         ...searchParams,
         page: 0,
       });
-      refetchCardSetWithCards();
     },
   });
 

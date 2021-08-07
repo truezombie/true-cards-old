@@ -72,7 +72,6 @@ const TabCardSetsShared = ({ classes }: TabCardSetsSharedProps) => {
 
   const {
     loading: isLoading,
-    refetch: onRefetchSharedCardSets,
     data: {
       sharedCardSets: { cardSets, count, subscriptions } = {
         cardSets: [],
@@ -93,12 +92,30 @@ const TabCardSetsShared = ({ classes }: TabCardSetsSharedProps) => {
   const [onSubscribe, { error: subscriptionError }] = useMutation(
     SUBSCRIBE_QUERY,
     {
-      onCompleted: () => onRefetchSharedCardSets(),
+      refetchQueries: [
+        {
+          query: LIST_SHARED_CARD_SETS_QUERY,
+          variables: {
+            search: pageSharedCardSetsSearch,
+            page: pageSharedCardSetsPageNumber,
+            rowsPerPage: pageSharedCardSetsRowsPerPage,
+          },
+        },
+      ],
     }
   );
 
   const [onUnSubscribe] = useMutation(UNSUBSCRIBE_QUERY, {
-    onCompleted: () => onRefetchSharedCardSets(),
+    refetchQueries: [
+      {
+        query: LIST_SHARED_CARD_SETS_QUERY,
+        variables: {
+          search: pageSharedCardSetsSearch,
+          page: pageSharedCardSetsPageNumber,
+          rowsPerPage: pageSharedCardSetsRowsPerPage,
+        },
+      },
+    ],
   });
 
   const onSearch = useCallback(

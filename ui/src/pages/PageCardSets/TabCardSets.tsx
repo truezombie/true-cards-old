@@ -129,24 +129,69 @@ const TabCardSets = ({ classes, userId }: TabCardSetsProps) => {
   const [onCreateCardSet, { error: createCardSetError }] = useMutation(
     CREATE_CARD_SET_QUERY,
     {
-      onCompleted: () => cardSetsRefetch(),
+      refetchQueries: [
+        {
+          query: LIST_CARD_SETS_QUERY,
+          variables: {
+            search: pageCardSetsSearch,
+            page: pageCardSetsPageNumber,
+            rowsPerPage: pageCardSetsRowsPerPage,
+          },
+        },
+      ],
     }
   );
 
   const [onUpdateCardSetName] = useMutation(UPDATE_CARD_SET_NAME_QUERY, {
-    onCompleted: () => cardSetsRefetch(),
+    refetchQueries: [
+      {
+        query: LIST_CARD_SETS_QUERY,
+        variables: {
+          search: pageCardSetsSearch,
+          page: pageCardSetsPageNumber,
+          rowsPerPage: pageCardSetsRowsPerPage,
+        },
+      },
+    ],
   });
 
   const [onUpdateCardSetSharing] = useMutation(UPDATE_CARD_SET_SHARING_QUERY, {
-    onCompleted: () => cardSetsRefetch(),
+    refetchQueries: [
+      {
+        query: LIST_CARD_SETS_QUERY,
+        variables: {
+          search: pageCardSetsSearch,
+          page: pageCardSetsPageNumber,
+          rowsPerPage: pageCardSetsRowsPerPage,
+        },
+      },
+    ],
   });
 
   const [onDeleteCardSet] = useMutation(DELETE_CARD_SET_QUERY, {
-    onCompleted: () => cardSetsRefetch(),
+    refetchQueries: [
+      {
+        query: LIST_CARD_SETS_QUERY,
+        variables: {
+          search: pageCardSetsSearch,
+          page: pageCardSetsPageNumber,
+          rowsPerPage: pageCardSetsRowsPerPage,
+        },
+      },
+    ],
   });
 
   const [onUnSubscribe] = useMutation(UNSUBSCRIBE_QUERY, {
-    onCompleted: () => cardSetsRefetch(),
+    refetchQueries: [
+      {
+        query: LIST_CARD_SETS_QUERY,
+        variables: {
+          search: pageCardSetsSearch,
+          page: pageCardSetsPageNumber,
+          rowsPerPage: pageCardSetsRowsPerPage,
+        },
+      },
+    ],
   });
 
   const intl = useIntl();
