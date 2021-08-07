@@ -35,7 +35,7 @@ class CardAPI extends BaseDataSourceAPI {
 
       const paginationState = [
         {
-          $limit: rowsPerPage,
+          $limit: page * rowsPerPage + rowsPerPage,
         },
         {
           $skip: page * rowsPerPage,

@@ -1,5 +1,7 @@
 export const WORDS_PER_LEARNING_SESSION = [5, 10, 15, 25]; // eslint-disable-line
 
+export const DEFAULT_ITEMS_PER_PAGE = WORDS_PER_LEARNING_SESSION[1];
+
 export enum LEARNING_SESSION_TYPES {
   NEW_AND_FORGOT = 'NEW_AND_FORGOT',
   NEW = 'NEW',

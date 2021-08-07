@@ -29,6 +29,7 @@ import {
   Table,
   Menu,
 } from '../../components';
+import { DEFAULT_ITEMS_PER_PAGE } from '../PageStartLearning/constants';
 import { GET_CARDS_QUERY } from '../../containers/App/queries';
 import {
   CREATE_CARD_QUERY,
@@ -98,7 +99,7 @@ const PageCards = ({ classes }: PageCardsProps): JSX.Element => {
   }>({
     search: '',
     page: 0,
-    rowsPerPage: 15,
+    rowsPerPage: DEFAULT_ITEMS_PER_PAGE,
   });
 
   const {
