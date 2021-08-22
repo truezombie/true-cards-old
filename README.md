@@ -1,5 +1,5 @@
 # TRUE-CARDS
-#### Development build
+#### Run development build
 
 Run
 
@@ -13,9 +13,7 @@ Rebuild after local packages install
 docker-compose --file docker-compose-dev.yml --env-file ./api/.env up --build -V
 ```
 
-#### Production build
-
-Run
+#### Run production build
 
 ```
 docker-compose --file docker-compose-prod.yml --env-file ./api/.env up
